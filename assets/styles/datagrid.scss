@@ -1,0 +1,27 @@
+#datagrid-table-holder {
+    position: relative;
+
+    &.loading {
+        pointer-events: none;
+
+        &::after {
+            position: absolute;
+            content: "Chargement";
+            display: grid;
+            place-items: center;
+            backdrop-filter: blur(2px);
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.page-item.disabled, .page-item.active {
+    pointer-events: none;
+}
+
+.page-item:not(.disabled):hover, .page-item:not(.active):hover {
+    cursor: pointer;
+}

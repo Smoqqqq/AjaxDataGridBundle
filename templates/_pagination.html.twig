@@ -1,0 +1,15 @@
+<nav aria-label="Pagination du DataGrid" id="{{ datagrid.id }}-datagrid-pagination">
+    <ul class="pagination">
+        <li class="page-item {{ datagrid.currentPage == 1 ? 'disabled' }}" id="{{ datagrid.id }}-pagination-prev" onclick="_datagrid_goToPage({{ datagrid.currentPage - 1 }})">
+            <div class="page-link">Précédent</div>
+        </li>
+        {% for i in 1..datagrid.nbPages %}
+            <li class="page-item {{ datagrid.currentPage == i ? 'active' }}" data-nb="{{ i }}" onclick="_datagrid_goToPage({{ i }})">
+                <div class="page-link">{{ i }}</div>
+            </li>
+        {% endfor %}
+        <li class="page-item {{ datagrid.currentPage == datagrid.nbPages ? 'disabled' }}" id="{{ datagrid.id }}-pagination-next" onclick="_datagrid_goToPage({{ datagrid.currentPage + 1 }})">
+            <div class="page-link">Suivant</div>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,24 @@
+{
+    "name": "smoq/datagrid-bundle",
+    "description": "A Symfony bundle to create and manage dynamic tables of data",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "require": {
+        "doctrine/orm": "^2.13",
+        "symfony/form": "^7.0",
+        "symfony/http-foundation": "^7.0",
+        "symfony/cache": "^7.0",
+        "symfony/http-kernel": "^7.0",
+        "symfony/routing": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Smoq\\DataGridBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Smoq\\DataGridBundle\\Tests\\": "tests/"
+        }
+    }
+}

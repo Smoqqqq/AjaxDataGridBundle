@@ -1,0 +1,45 @@
+<div id="datagrid-table-holder">
+    <table class="table">
+        <thead>
+        <tr>
+            {% for key, field in datagrid.displayFields %}
+                <th>{{ key }}</th>
+            {% endfor %}
+
+            {% if datagrid.displayFields|length == 0 %}
+                <th>No fields to display</th>
+            {% endif %}
+
+            {% if datagrid.hasActions %}
+                <th>Actions</th>
+            {% endif %}
+        </tr>
+        </thead>
+
+        <tbody>
+            {% for item in datagrid.results %}
+                <tr>
+                    {% for field in datagrid.displayFields %}
+                        <td>{{ datagrid.displayField(field, item) }}</td>
+                    {% endfor %}
+
+                    {% if datagrid.displayFields|length == 0 %}
+                        <td>Please configure fields to display using the 'DataGrid::setDisplayFields()' /
+                            'DataGrid::addDisplayFields()' method
+                        </td>
+                    {% endif %}
+
+                    {% if datagrid.hasActions %}
+                        <td>
+                            {% for link in datagrid.actionLinks %}
+                                <a href="{{ datagrid.generateUrl(link, item) }}">{{ link.label|raw }}</a>
+                            {% endfor %}
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{{ asset('@SmoqDataGrid/js/datagrid.js') }}
