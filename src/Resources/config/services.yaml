@@ -1,0 +1,15 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Smoq\DataGridBundle\:
+        resource: '../../' # Tweak the relative path
+        exclude:
+            - '../DependencyInjection/'
+            - '../Kernel.php'
+            - '../Tests/'
+
+    Smoq\DataGridBundle\Controller\:
+        resource: '../../Controller/'
+        tags: ['controller.service_arguments']

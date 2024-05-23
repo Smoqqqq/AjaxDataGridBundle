@@ -17,7 +17,7 @@ class DataGrid {
     async getPageData() {
         const queryString = new URLSearchParams(new FormData(this.filterForm)).toString()
 
-        const url = '/station-datagrid/ajax?' + queryString;
+        const url = `/_smoq_ajax_datagrid/_ajax/${this.id}?${queryString}`;
 
         return await fetch(url)
             .then(res => res.json());
@@ -65,37 +65,51 @@ class DataGrid {
     }
 
     goToPage(i) {
-        document.getElementById('form__page').value = i;
+        document.getElementById(`${this.id}__page`).value = i;
         this.constructNewTable();
     }
 
     updatePagination(data) {
-        if (document.getElementById(`${this.id}-datagrid-pagination`) === null) return;
+        if (document.getElementById(`${this.id}-pagination`) === null) return;
 
-        const paginationUl = document.querySelector('#datagrid-pagination ul');
+        const paginationUl = document.querySelector(`#${this.id}-pagination ul`);
 
         paginationUl.innerHTML = '';
 
         const prev = document.createElement('li');
         prev.classList.add('page-item');
+        prev.classList.add(`${this.id}-pagination-item`);
         prev.innerHTML = `<div class="page-link">Précédent</div>`;
         paginationUl.appendChild(prev);
+        prev.addEventListener('click', () => {
+            this.goToPage(data.currentPage - 1);
+        })
 
         for (let i = 1; i <= data.nbPages; i++) {
             const li = document.createElement('li');
             li.classList.add('page-item');
+            li.classList.add(`${this.id}-pagination-item`);
             li.onclick = () => goToPage(i);
             li.dataset.nb = i;
             li.innerHTML = `<div class="page-link">${i}</div>`;
+
+            li.addEventListener('click', () => {
+                this.goToPage(i);
+            })
+
             paginationUl.appendChild(li);
         }
 
         const next = document.createElement('li');
         next.classList.add('page-item');
+        next.classList.add(`${this.id}-pagination-item`);
         next.innerHTML = `<div class="page-link">Suivant</div>`;
         paginationUl.appendChild(next);
+        next.addEventListener('click', () => {
+            this.goToPage(data.currentPage + 1);
+        })
 
-        document.querySelector('.page-item[data-nb="' + data.currentPage + '"]')?.classList.add('active');
+        document.querySelector(`.${this.id}-pagination-item[data-nb="${data.currentPage}"]`)?.classList.add('active');
 
         if (data.currentPage > 1) {
             prev.classList.remove('disabled');
@@ -114,11 +128,6 @@ class DataGrid {
 
     search() {
         document.getElementById('form__page').value = 1;    // reset page to 1
-        this.constructNewTable();                                         // load data
+        this.constructNewTable();                                    // load data
     }
 }
-
-window._datagrid_search = search;
-window._datagrid_goToPage = goToPage;
-
-console.log("HOURA")

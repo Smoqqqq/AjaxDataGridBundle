@@ -1,0 +1,30 @@
+{
+    "manifests": {
+        "smoq/datagrid-bundle": {
+            "manifest": {
+                "bundles": {
+                    "Smoq\\DataGridBundle\\SmoqDataGridBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%"
+                }
+            },
+            "files": {
+                "config/routes.yaml": {
+                    "contents": [
+                        "smoq_data_grid_bundle:",
+                        "resource:",
+                        "path: @Smoq\\DataGridBundle\\Controller\\",
+                        "namespace: Smoq\\DataGridBundle\\Controller",
+                        "type: attribute",
+                        ""
+                    ],
+                    "executable": false
+                }
+            },
+            "ref": "7405f3af1312d1f9121afed4dddef636c6c7ff00"
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "recipes": {
+        "smoq/datagrid-bundle": [
+            "1.0"
+        ]
+    },
+    "branch": "main",
+    "is_contrib": true,
+    "_links": {
+        "repository": "https://github.com/Smoqqqq/AjaxDataGridBundle",
+        "origin_template": "smoq/datagrid-bundle:1.0@https://github.com/Smoqqqq/AjaxDataGridBundle:main",
+        "recipe_template": "https://api.github.com/repos/Smoqqqq/AjaxDataGridBundle/contents/smoq.datagrid-bundle:1.0.json"
+    }
+}

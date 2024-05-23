@@ -158,6 +158,8 @@ abstract class DataGrid
         // Must have a non-null key, so add an arbitrary string in front
         $key = 'request_'.$this->request->getQueryString();
 
+        $this->cache->delete($key);
+
         // return the item from cache, and set it if it doesn't exist
         return $this->cache->get($key, function (ItemInterface $item) {
             $item->expiresAfter(3600);
@@ -382,6 +384,6 @@ abstract class DataGrid
     }
 
     public function getId() {
-        return strtolower(str_replace('\\', '_', static::class));
+        return str_replace('\\', '_', static::class);
     }
 }

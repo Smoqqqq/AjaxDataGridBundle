@@ -24,7 +24,7 @@ in the `config/bundles.php` file of your project:
 
 return [
     // ...
-    Smoq\DataGridBundle\SmoqDataGridBundle::class => ['all' => true],
+    Smoq\DataGridBundle\AjaxDataGridBundle::class => ['all' => true],
 ];
 ```
 
@@ -59,9 +59,9 @@ Create a DataGrid like so :
 
 namespace App\DataGrid;
 
-use Smoq\DataGridBundle\DataGrid;
+use Smoq\DataGridBundle\AjaxDataGrid;
 
-class StationDataGrid extends DataGrid
+class StationDataGrid extends AjaxDataGrid
 {
     public function configure(): void
     {
